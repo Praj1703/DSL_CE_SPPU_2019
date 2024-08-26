@@ -1,11 +1,9 @@
 #include <iostream>
-
-
 using namespace std;
 
 class Stack {
 public:
-    static const int SIZE = 100;
+    static const int SIZE = 100; 
     char a[SIZE];
     int tos;
 
@@ -14,14 +12,15 @@ public:
     void push(char c);
     void pop();
     void display() const;
+    void reverse() const;
     bool palindrome() const;
 };
 
 void Stack::push(char c) {
-    if (tos < SIZE - 1) {
-        a[++tos] = c;
-    } else {
+    if (tos == SIZE - 1) {
         cout << "Stack is full" << endl;
+    } else {
+        a[++tos] = c;
     }
 }
 
@@ -37,7 +36,19 @@ void Stack::display() const {
     if (tos >= 0) {
         cout << "Stack elements: ";
         for (int i = 0; i <= tos; ++i) {
-            cout << a[i] << ' ';
+            cout << a[i]<<' ';
+        }
+        cout << endl;
+    } else {
+        cout << "Stack is empty" << endl;
+    }
+}
+
+void Stack::reverse() const {
+    if (tos >= 0) {
+        cout << "Reversed string: ";
+        for (int i = tos; i >= 0; --i) {
+            cout << a[i]<<' ';
         }
         cout << endl;
     } else {
@@ -69,6 +80,7 @@ int main() {
     }
 
     stack.display();
+    stack.reverse();
 
     if (stack.palindrome()) {
         cout << "The string is a palindrome." << endl;
